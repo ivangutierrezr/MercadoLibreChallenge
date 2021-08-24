@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchList">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/nextPrevContainer"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="5dp" />
+
+    <ProgressBar
+        android:id="@+id/loadingProducts"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="135dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="197dp"
+        android:indeterminate="false"
+        android:max="@android:integer/config_mediumAnimTime"
+        android:progressTint="@color/yellowMC" />
+
+    <TextView
+        android:id="@+id/txtLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/loadingProducts"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/loading_string"
+        android:textColor="@color/blueMC"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtNoResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnBackToSearch"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/no_results_string"
+        android:textColor="@color/blueMC"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnBackToSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
+        android:text="@string/btn_back_to_search"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/nextPrevContainer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:text="@string/btn_prev"
+            android:textSize="12sp"
+            tools:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="30dp"
+            android:text="@string/btn_next"
+            android:textSize="12sp"
+            tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textActualPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toStartOf="@+id/btnNext"
+            android:layout_toEndOf="@+id/btnPrev"
+            android:fontFamily="@font/roboto_medium"
+            android:textAlignment="center"
+            android:textColor="@color/blueMC"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>

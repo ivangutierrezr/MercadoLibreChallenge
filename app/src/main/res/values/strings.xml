@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- App name.-->
+    <string name="app_name">Mercado Libre Challenge</string>
+
+    <!--HOME-->
+    <!-- Alt for Mercado Libre Logo on Home view.-->
+    <string name="description_img_logo">Mercado Libre Logo</string>
+    <!-- Main text on Home view".-->
+    <string name="search_main_text">Digita a continuación el producto que estás buscando</string>
+    <!-- Hint for placeholder on search input on Home view".-->
+    <string name="search_hint">Buscar productos, marcas y más...</string>
+    <!--Text for Search button on Home view".-->
+    <string name="btn_search">Buscar</string>
+
+    <!--MENU-->
+    <!-- Text for icon button "go back".-->
+    <string name="return_title">Regresar</string>
+
+    <!--SearchList-->
+    <!-- Text for loading spinner".-->
+    <string name="loading_string">Cargando resultados de la búsqueda</string>
+    <!-- Text for no results found".-->
+    <string name="no_results_string">No se han encontrado resultados para tu búsqueda</string>
+    <!-- Text for button to do another search (go back to home)".-->
+    <string name="btn_back_to_search">Realizar otra búsqueda</string>
+    <!-- Text for button to previous search page".-->
+    <string name="btn_prev">Ant.</string>
+    <!-- Text for button to next search page".-->
+    <string name="btn_next">Sig.</string>
+
+    <!--ProductDetail-->
+    <!-- Text for Attributes title".-->
+    <string name="attributes_title">Características</string>
+</resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/productDetailImage"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/btnNextImage"
+            android:layout_toEndOf="@+id/btnPrevImage" />
+
+        <Button
+            android:id="@+id/btnPrevImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="80dp"
+            android:textAlignment="center"
+            app:icon="@android:drawable/ic_media_previous"
+            app:iconSize="24dp"
+            app:iconTint="@color/black" />
+
+        <Button
+            android:id="@+id/btnNextImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="15dp"
+            android:textAlignment="center"
+            app:icon="@android:drawable/ic_media_next"
+            app:iconSize="24dp"
+            app:iconTint="@color/black" />
+
+        <TextView
+            android:id="@+id/txtProductDetailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productDetailImage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtProductDetailRegularAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="viewStart"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtProductDetailAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailRegularAmount"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtProductDetailDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailRegularAmount"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@+id/txtProductDetailAmount"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/greenMC" />
+
+        <TextView
+            android:id="@+id/txtProductDetailFreeShipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailAmount"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/greenMC"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtProductDetailAvailableStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailFreeShipping"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTitleAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProductDetailAvailableStock"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/attributes_title"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/productDetailDescriptionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTitleAttributes"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

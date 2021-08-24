@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".Home">
+
+    <ImageView
+        android:id="@+id/logoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:contentDescription="@string/description_img_logo"
+        app:srcCompat="@drawable/mercadolibre" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="26dp" />
+
+    <TextView
+        android:id="@+id/textSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="@string/search_main_text"
+        android:textColor="@color/blueMC"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="26dp" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        style="@android:style/Widget.Material.Light.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/search_hint"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        android:textSize="14sp"
+        android:typeface="normal" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="26dp" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/blueMC"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:shadowColor="@color/white"
+        android:text="@string/btn_search"
+        android:textColor="@color/blueMC" />
+</LinearLayout>
