@@ -68,7 +68,7 @@ public class SearchList extends AppCompatActivity {
     private Button btnBackToSearch;
     private TextView txtNoResults;
 
-    private TextView textActualPage;
+    private TextView txtCurrentPage;
     private Button btnPrev;
     private Button btnNext;
     private List<ProductBasicInfo> products;
@@ -91,7 +91,7 @@ public class SearchList extends AppCompatActivity {
         limit = dataReceived.getInt("limit");
         currentPage = dataReceived.getInt("page");
         stringSearch = stringSearch.replaceAll("\\s+","%20");
-        urlSearch = BASE_URL + stringSearch + "&offset=" + offset + "&limit=" + limit;
+        urlSearch = getUrlSearch();
     }
 
     private void setComponents() {
@@ -99,16 +99,9 @@ public class SearchList extends AppCompatActivity {
         txtLoading = findViewById(R.id.txtLoading);
         btnBackToSearch = findViewById(R.id.btnBackToSearch);
         txtNoResults = findViewById(R.id.txtNoResults);
-        textActualPage = findViewById(R.id.textActualPage);
+        txtCurrentPage = findViewById(R.id.txtCurrentPage);
         btnPrev = findViewById(R.id.btnPrev);
         btnNext = findViewById(R.id.btnNext);
-        loadingProducts.setVisibility(View.VISIBLE);
-        txtLoading.setVisibility(View.VISIBLE);
-        btnBackToSearch.setVisibility(View.INVISIBLE);
-        txtNoResults.setVisibility(View.INVISIBLE);
-        textActualPage.setVisibility(View.INVISIBLE);
-        btnPrev.setVisibility(View.INVISIBLE);
-        btnNext.setVisibility(View.INVISIBLE);
 
         btnBackToSearch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -120,8 +113,8 @@ public class SearchList extends AppCompatActivity {
             public void onClick(View v) {
                 offset = offset - limit;
                 currentPage = currentPage - 1;
-                urlSearch = "https://api.mercadolibre.com/sites/MCO/search?q=" + stringSearch + "&offset=" + offset + "&limit=" + limit;
-                getProducts();
+                urlSearch = getUrlSearch();
+                getProducts(urlSearch);
             }
         });
 
@@ -129,10 +122,78 @@ public class SearchList extends AppCompatActivity {
             public void onClick(View v) {
                 offset = offset + limit;
                 currentPage = currentPage + 1;
-                urlSearch = "https://api.mercadolibre.com/sites/MCO/search?q=" + stringSearch + "&offset=" + offset + "&limit=" + limit;
-                getProducts();
+                urlSearch = getUrlSearch();
+                getProducts(urlSearch);
             }
         });
+
+        setLoadingProductsVisibility(true);
+        setTxtLoadingVisibility(true);
+        setBtnBackToSearchVisibility(false);
+        setTxtNoResultsVisibility(false);
+        setTxtCurrentPageVisibility(false);
+        setBtnPrevVisibility(false);
+        setBtnNextVisibility(false);
+    }
+
+    public void setLoadingProductsVisibility(Boolean visibility) {
+        if (visibility) {
+            loadingProducts.setVisibility(View.VISIBLE);
+        } else {
+            loadingProducts.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setTxtLoadingVisibility(Boolean visibility) {
+        if (visibility) {
+            txtLoading.setVisibility(View.VISIBLE);
+        } else {
+            txtLoading.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setBtnBackToSearchVisibility(Boolean visibility) {
+        if (visibility) {
+            btnBackToSearch.setVisibility(View.VISIBLE);
+        } else {
+            btnBackToSearch.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setTxtNoResultsVisibility(Boolean visibility) {
+        if (visibility) {
+            txtNoResults.setVisibility(View.VISIBLE);
+        } else {
+            txtNoResults.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setTxtCurrentPageVisibility(Boolean visibility) {
+        if (visibility) {
+            txtCurrentPage.setVisibility(View.VISIBLE);
+        } else {
+            txtCurrentPage.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setBtnPrevVisibility(Boolean visibility) {
+        if (visibility) {
+            btnPrev.setVisibility(View.VISIBLE);
+        } else {
+            btnPrev.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setBtnNextVisibility(Boolean visibility) {
+        if (visibility) {
+            btnNext.setVisibility(View.VISIBLE);
+        } else {
+            btnNext.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public String getUrlSearch() {
+        return BASE_URL + stringSearch + "&offset=" + offset + "&limit=" + limit;
     }
 
     @Override
@@ -163,10 +224,14 @@ public class SearchList extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getProducts();
+        getProducts(urlSearch);
     }
 
-    private void getProducts() {
+    /**
+     * This method search products in Api and get array of products if exists
+     * @param urlSearch url where products will be got
+     */
+    private void getProducts(String urlSearch) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, urlSearch, null, response -> {
                     try {
@@ -176,29 +241,34 @@ public class SearchList extends AppCompatActivity {
                         JSONArray resultsArray = new JSONArray(results);
                         JSONObject infoPage = new JSONObject(pagingInfo);
                         int totalResults = infoPage.getInt("total");
-                        loadingProducts.setVisibility(View.INVISIBLE);
-                        txtLoading.setVisibility(View.INVISIBLE);
+                        setLoadingProductsVisibility(false);
+                        setTxtLoadingVisibility(false);
+                        setBtnBackToSearchVisibility(false);
+                        setTxtNoResultsVisibility(false);
+                        setTxtCurrentPageVisibility(false);
+                        setBtnPrevVisibility(false);
+                        setBtnNextVisibility(false);
                         products = new ArrayList();
                         if (resultsArray.length() == 0) {
-                            btnBackToSearch.setVisibility(View.VISIBLE);
-                            txtNoResults.setVisibility(View.VISIBLE);
-                            btnPrev.setVisibility(View.INVISIBLE);
-                            btnNext.setVisibility(View.INVISIBLE);
-                            textActualPage.setVisibility(View.INVISIBLE);
+                            setBtnBackToSearchVisibility(true);
+                            setTxtNoResultsVisibility(true);
+                            setTxtCurrentPageVisibility(false);
+                            setBtnPrevVisibility(false);
+                            setBtnNextVisibility(false);
                         } else {
-                            textActualPage.setVisibility(View.VISIBLE);
+                            setTxtCurrentPageVisibility(true);
                             if (offset == 0) {
-                                btnPrev.setVisibility(View.INVISIBLE);
+                                setBtnPrevVisibility(false);
                             } else {
-                                btnPrev.setVisibility(View.VISIBLE);
+                                setBtnPrevVisibility(true);
                             }
                             if (offset+limit >= totalResults) {
-                                btnNext.setVisibility(View.INVISIBLE);
+                                setBtnNextVisibility(false);
                             } else {
-                                btnNext.setVisibility(View.VISIBLE);
+                                setBtnNextVisibility(true);
                             }
                             int totalPages = (int)(Math.floor(totalResults/limit));
-                            textActualPage.setText(currentPage + " / " + totalPages);
+                            txtCurrentPage.setText(currentPage + " / " + totalPages);
                             for (int i =0; i < resultsArray.length(); i++) {
                                 JSONObject row = resultsArray.getJSONObject(i);
 
@@ -243,18 +313,15 @@ public class SearchList extends AppCompatActivity {
                                 int regular_amountDB = 0;
                                 if (row.has("prices")) {
                                     JSONObject pricesBD = new JSONObject(row.getString("prices"));
-//                                    System.out.println("pricesBD: " + pricesBD);
                                     JSONArray pricesArray = new JSONArray(pricesBD.getString("prices"));
                                     if (pricesArray.length() > 0) {
                                         JSONObject lastPrice = pricesArray.getJSONObject(pricesArray.length()-1);
-//                                        System.out.println("lastPrice: " + lastPrice);
                                         amountDB = lastPrice.getInt("amount");
                                         if (!lastPrice.isNull("regular_amount")) {
                                             regular_amountDB = lastPrice.getInt("regular_amount");
                                         }
                                     }
                                 }
-//                                System.out.println("regular_amountDB: " + regular_amountDB);
 
                                 Prices prices = new Prices(amountDB, regular_amountDB);
 
@@ -359,13 +426,17 @@ public class SearchList extends AppCompatActivity {
                     .execute(products.get(i).getThumbnail());
             viewHolder.product_list_content.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    goToProductDetail(products.get(i));
+                    goToProductDetail(products.get(i).getId());
                 }
             });
         }
     }
 
-    private void goToProductDetail(ProductBasicInfo product) {
-        NavigationHelper.navigateTo(this, ProductDetail.class, product.getId(), stringSearch, limit, offset, currentPage);
+    /**
+     * This method navigate to ProductDetail activity
+     * @param productId Id of product that will be rendered in ProductDetail Activity
+     */
+    private void goToProductDetail(String productId) {
+        NavigationHelper.navigateTo(this, ProductDetail.class, productId, stringSearch, limit, offset, currentPage);
     }
 }

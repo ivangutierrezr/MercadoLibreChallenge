@@ -3,7 +3,6 @@ package com.example.mercadolibrechallenge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +36,10 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method validates that EditText isn't empty and send it to Search List view to be searched.
+     * @param searchText text from EditText that is going to be searched.
+     */
     public void search(String searchText) {
         if (searchText == null || searchText.isEmpty()) {
             Toast.makeText(this,"Debe agregar un texto de búsqueda", Toast.LENGTH_LONG).show();

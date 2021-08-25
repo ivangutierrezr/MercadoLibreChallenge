@@ -3,7 +3,6 @@ package com.example.mercadolibrechallenge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -125,10 +124,14 @@ public class ProductDetail extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getProduct();
+        getProduct(urlSearch);
     }
 
-    private void getProduct() {
+    /**
+     * This method get the product detail from url
+     * @param urlSearch Url made with Product Id
+     */
+    private void getProduct(String urlSearch) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
                 (Request.Method.GET, urlSearch, null, response -> {
                     try {
@@ -237,7 +240,6 @@ public class ProductDetail extends AppCompatActivity {
 
         btnNextImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println(product.getPictures().size());
                 currentPicture++;
                 if (currentPicture == product.getPictures().size()) {
                     currentPicture = 0;
@@ -267,6 +269,10 @@ public class ProductDetail extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method add TextViews to Relative layout with Id productDetailDescriptionContent to show every title and value of each attribute
+     * @param productAttribute every attribute of product to render
+     */
     public void renderProductAttributes(ProductDetailsAttributes productAttribute) {
         TextView textViewName = new TextView(this);
         TextView textViewValueName = new TextView(this);

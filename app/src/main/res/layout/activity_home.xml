@@ -40,7 +40,7 @@
 
     <EditText
         android:id="@+id/searchInput"
-        style="@android:style/Widget.Material.Light.EditText"
+        style="@android:style/Widget.Material.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
